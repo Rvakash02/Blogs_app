@@ -35,4 +35,4 @@ router.delete('/blogs/:id', requireAuth, blogController.blog_delete);
 
 module.exports = router;
 
-// const dbURI = 'mongodb+srv://rvakash02:Rvakash%400211@cluster0.engf63t.mongodb.net/blogs?retryWrites=true&w=majority&appName=Cluster0';
+

@@ -1,1 +1,10 @@
 # blogs-app
+"bcrypt": "^6.0.0",
+    "cookie": "^2.0.1",
+    "cookie-parser": "^1.4.7",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "mongoose": "^9.7.4",
+    "morgan": "^1.11.0",
+    "nodemon": "^3.1.14",
+    "uuid": "^14.0.1"

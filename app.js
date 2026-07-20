@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const path = require('path');
 const cookieParser = require("cookie-parser");
+require("dotenv").config();
 
 
 const app = express();
@@ -10,13 +11,12 @@ const app = express();
 const blogRoute = require('./routes/blogsRoutes');
 const userRoute = require('./routes/userRoute');
 
-const dbURI =  'mongodb+srv://rvakash02:Rvakash%400211@cluster0.engf63t.mongodb.net/blogs?retryWrites=true&w=majority&appName=Cluster0';
-
-mongoose.connect(dbURI)
+mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log('DB connected');
-        app.listen(3000, () => {
-            console.log('Server running on http://localhost:3000');
+        const PORT = process.env.PORT || 3000;
+        app.listen(PORT, () => {
+            console.log(`Server running on port ${PORT}`);
         });
     })
     .catch(err => console.log(err));
