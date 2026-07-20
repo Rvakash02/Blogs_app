@@ -6,14 +6,30 @@
 <body>
     
     <%- include('./partials/nav.ejs') %>
+    
+    <div class="blogs content">
+        <h2>Your Blogs</h2>
+        <% if(myBlogs && myBlogs.length > 0) { %>
+            <% myBlogs.forEach( (blog) =>{ %>
+                <a class="single" href="/blogs/<%= blog._id %>">
+                    <h3> <%=blog.title %> </h3>
+                    <p> <%=blog.snippet %> </p>
+                </a>
+           <% })%>
+            
+        <% } else{ %>
+            <p>There are no blogs to display..</p>
+        <% } %>  
+    </div>
 
     <div class="blogs content">
         <h2>All Blogs</h2>
-        <% if(blogs.length > 0) { %>
+        <% if(blogs && blogs.length > 0) { %>
             <% blogs.forEach( (blog) =>{ %>
                 <a class="single" href="/blogs/<%= blog._id %>">
-                <h3> <%=blog.title %> </h3>
-                <p> <%=blog.snippet %> </p>
+                    <h3> <%=blog.title %> </h3>
+                    <p> <%=blog.snippet %> </p>
+                </a>
            <% })%>
             
         <% } else{ %>

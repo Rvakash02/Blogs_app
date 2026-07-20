@@ -4,114 +4,76 @@
 <body>
     <%- include('./partials/nav.ejs') %>
 
+    <main class="home content">
     <div class="home content">
-
-    <!-- Hero Section -->
     <section class="home-hero">
 
-        <h1>
-            Discover Stories That Matter
-        </h1>
-
-        <p>
-            Explore trending ideas, experiences, and knowledge shared by our
-            community of writers.
-        </p>
+        <h1>Stories moving through Blogify right now</h1>
+        <p>Explore trending ideas, experiences, and knowledge shared by our community of writers.</p>
 
     </section>
 
 
     <!-- Trending Blogs -->
-    <section class="blogs-section">
-
-        <h2>🔥 Trending Blogs</h2>
-
-        <div class="blog-grid">
-
-            <% blogs.forEach(blog => { %>
-
-            <div class="blog-card">
-
-                <% if(blog.image){ %>
-                <img src="/uploads/<%= blog.image %>" alt="blog image">
-                <% } %>
-
-                <div class="card-content">
-
-                    <h3>
-                        <%= blog.title %>
-                    </h3>
-
-                    <p>
-                        <%= blog.snippet %>
-                    </p>
-
-                    <a href="/blogs/<%= blog._id %>">
-                        Read More →
+    
+        <% if (blogs && blogs.length > 0) { %>
+            <% const topBlog = blogs[0]; %>
+            <section class="top-stories">
+                <article class="lead-story">
+                    <a href="/blogs/<%= topBlog._id %>">
+                        <% if(topBlog.image){ %>
+                            <img src="/uploads/<%= topBlog.image %>" alt="blog image">
+                        <% } %>
+                        <div class="story-copy">
+                            <p class="eyebrow"><%= topBlog.genre || 'Featured' %></p>
+                            <h2 class="blog-title"><%= topBlog.title %></h2>
+                            <p><%= topBlog.snippet %></p>
+                        </div>
                     </a>
+                </article>
 
-                </div>
-
+                <aside class="side-stories" aria-label="More top stories">
+                    <% blogs.slice(1, 3).forEach((blog, index) => { %>
+                        <article class="side-story" data-search="<%= `${blog.title} ${blog.snippet} ${blog.genre || ''}` %>" data-category="<%= blog.genre || 'All' %>">
+                            <a href="/blogs/<%= blog._id %>">
+                                <span class="rank"><%= index + 2 %></span>
+                                <div>
+                                    <p class="eyebrow"><%= blog.genre || 'Story' %></p>
+                                    <h3><%= blog.title %></h3>
+                                    <p><%= blog.snippet %></p>
+                                </div>
+                            </a>
+                        </article>
+                    <% }) %>
+                </aside>
+            </section>
+        <% } %>
+        
+        
+        <!-- Latest Blogs -->
+        <section class="blogs-section">
+            <div class="section-heading">
+                <h2>Fresh Stories</h2>
             </div>
-
-            <% }) %>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- Categories -->
-    <section class="categories">
-
-        <h2>Explore Topics</h2>
-
-        <div class="category-list">
-
-            <span>Technology</span>
-            <span>Programming</span>
-            <span>Travel</span>
-            <span>Life</span>
-            <span>Education</span>
-
-        </div>
-
-    </section>
-
-
-    <!-- Latest Blogs -->
-    <section class="blogs-section">
-
-        <h2>📝 Latest Stories</h2>
-
-        <div class="latest">
-
-            <% blogs.slice(0,3).forEach(blog => { %>
-
-            <article>
-
-                <h3>
-                    <%= blog.title %>
-                </h3>
-
-                <p>
-                    <%= blog.body.substring(0,150) %>...
-                </p>
-
-                <a href="/blogs/<%= blog._id %>">
-                    Continue Reading
-                </a>
-
-            </article>
-
-            <% }) %>
-
-        </div>
-
-    </section>
-
-
+            
+            <div class="latest latest-list">
+                <% blogs.slice(0,3).forEach((blog, index) => { %>
+                    <article data-search="<%= `${blog.title} ${blog.snippet} ${blog.body} ${blog.genre || ''}` %>" data-category="<%= blog.genre || 'All' %>">
+                        <a href="/blogs/<%= blog._id %>">
+                            <span class="rank"><%= index + 1 %></span>
+                            <div>
+                                <p class="eyebrow"><%= blog.genre || 'Latest' %></p>
+                                <h3><%= blog.title %></h3>
+                                <p><%= blog.body.replace(/<[^>]*>/g, '').substring(0,150) %>...</p>
+                            </div>
+                        </a>
+                    </article>
+                    <% }) %>
+                </div>
+            </section>
+            
+        </main>
+            
 </div>
 
  <%- include('./partials/footer.ejs') %>

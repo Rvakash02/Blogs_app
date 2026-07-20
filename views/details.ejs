@@ -18,12 +18,15 @@
                     <img src="/uploads/<%= blog.image %>" alt="Blog Image" class="blog-image">
 
                     <% } %>
+                    
                         <div class="content">
-                            <p>
-                                <%= blog.body %>
+                            <p class="blog-body">
+                                <%-blog.body %>
                             </p>
                         </div>
-                        <a class="delete" data-doc="<%= blog._id %>">delete</a>
+                        <% if(canDelete){ %>
+                            <a class="delete" data-doc="<%= blog._id %>">delete</a>
+                        <% } %>
             </div>
 
             <%- include('./partials/footer.ejs') %>
@@ -31,6 +34,7 @@
                 <script>
                     const trashcan = document.querySelector('a.delete');
 
+                    if (trashcan) {
                     trashcan.addEventListener('click', (e) => {
                         const endpoint = `/blogs/${trashcan.dataset.doc}`;
 
@@ -39,10 +43,13 @@
                                 return response.json();
                             })
                             .then(data => {
-                                window.location.href = data.redirect;
+                                if (data.redirect) {
+                                    window.location.href = data.redirect;
+                                }
                             })
                             .catch(err => console.log(err))
                     })
+                    }
                 </script>
     </body>
 

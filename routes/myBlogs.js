@@ -1,0 +1,1 @@
+// router.get('/blogs/myblogs', blogController.myBlogs);
