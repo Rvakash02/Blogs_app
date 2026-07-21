@@ -19,11 +19,9 @@
 
                     <% } %>
                     
-                        <div class="content">
                             <p class="blog-body">
                                 <%-blog.body %>
                             </p>
-                        </div>
                         <% if(canDelete){ %>
                             <a class="delete" data-doc="<%= blog._id %>">delete</a>
                         <% } %>
