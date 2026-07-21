@@ -16,7 +16,8 @@ const blog_index = async (req, res) => {
         res.render('all_blogs', {
             title : 'All Blogs',
             myBlogs ,
-            blogs: allBlogs
+            blogs: allBlogs,
+            user : req.user
         });
     } 
     catch(err){
@@ -24,7 +25,8 @@ const blog_index = async (req, res) => {
         res.render('all_blogs', {
             title: 'All Blogs',
             myBlogs: [],
-            blogs: []
+            blogs: [],
+            user : req.user
         });
     } 
 }

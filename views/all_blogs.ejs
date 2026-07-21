@@ -9,7 +9,9 @@
     
     <div class="blogs content">
         <h2>Your Blogs</h2>
-        <% if(myBlogs && myBlogs.length > 0) { %>
+        <% if(!user) { %>
+            <p><a href="/user/login">login</a> to see your blogs</p>
+        <% } else if(myBlogs && myBlogs.length > 0) { %>
             <% myBlogs.forEach( (blog) =>{ %>
                 <a class="single" href="/blogs/<%= blog._id %>">
                     <h3> <%=blog.title %> </h3>
