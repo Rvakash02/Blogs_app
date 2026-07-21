@@ -23,11 +23,12 @@ app.use(cookieParser());
 
 // Non-blog routes
 
-connectDB();
-
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+
+connectDB().then(() => {
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+    });
 });
 
 app.get('/home', (req, res) => {
