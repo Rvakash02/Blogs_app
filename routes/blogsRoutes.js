@@ -13,13 +13,17 @@ router.get('/', (req, res) => {
             res.render('index', {
                 title: 'Home',
                 blogs: result
-
             });
         })
         .catch(err => {
-            console.log(err);
+            console.log("Error fetching home blogs:", err.message);
+            res.render('index', {
+                title: 'Home',
+                blogs: []
+            });
         });
 });
+
 
 
 // All blogs

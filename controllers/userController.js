@@ -54,10 +54,14 @@ const handleUserLogin = (req, res) => {
                 res.cookie('uid', sessionId);
                 res.redirect('/');
 
-            }).catch(err =>{
-                console.log(err);
-                
-            })
+            }).catch(err => {
+                console.log("Login error:", err);
+                res.status(500).render("login", {
+                    title: "Login",
+                    error: "An error occurred during login."
+                });
+            });
+
 }
 
 module.exports = {

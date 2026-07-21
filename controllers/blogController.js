@@ -20,8 +20,12 @@ const blog_index = async (req, res) => {
         });
     } 
     catch(err){
-        console.log(err);
-        
+        console.log("Error in blog_index:", err);
+        res.render('all_blogs', {
+            title: 'All Blogs',
+            myBlogs: [],
+            blogs: []
+        });
     } 
 }
 
@@ -69,9 +73,11 @@ const blog_create_post = (req, res) => {
             res.redirect('/blogs');
         })
         .catch(err => {
-            console.log(err);
+            console.log("Error creating blog:", err);
+            res.status(500).render('404', { title: 'Error creating blog' });
         });
 }
+
 
 const blog_delete = async (req, res) => {
     try {
