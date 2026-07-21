@@ -614,40 +614,73 @@ footer {
   font-size: 0.88rem;
 }
 
+/* ==========================================
+   Responsive Viewport Breakpoints
+   ========================================== */
+
 @media (max-width: 980px) {
-  .top-stories,
+  .top-stories {
+    grid-template-columns: 1fr;
+  }
+  .latest-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .site-header {
+    top: 10px;
+    width: calc(100% - 20px);
+    border-radius: 24px;
+  }
+  nav {
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px 20px;
+  }
+  .nav-links {
+    gap: 16px;
+    justify-content: center;
+    width: 100%;
+  }
+  .buttons {
+    width: 100%;
+    justify-content: center;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 600px) {
   .latest-list,
   .features {
     grid-template-columns: 1fr;
   }
-
-  nav {
-    flex-wrap: wrap;
-  }
-
-  .nav-links,
-  .buttons {
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-  }
-}
-
-@media (max-width: 640px) {
-  nav,
   .content {
-    width: min(100% - 28px, var(--max));
+    padding: 32px 0;
+    width: calc(100% - 24px);
   }
-
-  .side-story a,
-  .latest article a {
-    grid-template-columns: 36px 1fr;
-    padding: 15px;
-  }
-
   .create-blogs,
   .login,
   .signup {
-    width: min(100% - 28px, 760px);
+    width: calc(100% - 24px);
+  }
+  .create-blogs form,
+  .login .form,
+  .signup form,
+  body > form {
+    padding: 18px 16px;
+  }
+  .home-hero h1,
+  .about-hero h1,
+  .details h2 {
+    font-size: 2.2rem;
+  }
+  .side-story a,
+  .latest article a {
+    grid-template-columns: 28px 1fr;
+    padding: 12px;
   }
 }
