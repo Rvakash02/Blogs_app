@@ -632,24 +632,48 @@ footer {
 
 @media (max-width: 768px) {
   .site-header {
-    top: 10px;
-    width: calc(100% - 20px);
-    border-radius: 24px;
+    top: 8px;
+    width: calc(100% - 16px);
+    border-radius: 16px;
   }
   nav {
-    flex-direction: column;
-    gap: 12px;
-    padding: 14px 20px;
+    flex-wrap: wrap;
+    padding: 8px 16px;
+    gap: 8px;
   }
-  .nav-links {
-    gap: 16px;
-    justify-content: center;
-    width: 100%;
+  .left {
+    order: 1;
   }
   .buttons {
+    order: 2;
+    width: auto;
+    gap: 6px;
+  }
+  .buttons .btn {
+    padding: 6px 12px;
+    font-size: 0.68rem;
+    min-height: 30px;
+  }
+  .site-title h1 {
+    font-size: 1.35rem;
+  }
+  .nav-links {
+    order: 3;
     width: 100%;
     justify-content: center;
-    gap: 12px;
+    gap: 14px;
+    padding-top: 6px;
+    border-top: 1px solid var(--soft);
+  }
+  .nav-links a {
+    font-size: 0.72rem;
+  }
+  .nav-links .write-btn {
+    background: transparent;
+    color: var(--ink);
+    border: none;
+    padding: 0;
+    min-height: auto;
   }
 }
 
