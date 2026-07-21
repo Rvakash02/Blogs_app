@@ -5,6 +5,7 @@ const path = require('path');
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
 const connectDB = require('./database/db');
+const { checkUser } = require('./middleware/auth');
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use(cookieParser());
+app.use(checkUser);
 
 // Non-blog routes
 app.get('/home', (req, res) => {

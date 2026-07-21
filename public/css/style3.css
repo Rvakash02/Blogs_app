@@ -1,11 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap");
 
 :root {
-  --bg: #ffffff;
+  --bg: #fffdfd;
   --paper: #ffffff;
-  --ink: #0a0a0a;
-  --muted: #175922;
-  --line: #e0e0e0;
+  --ink: #131313;
+  --muted: #010101;
+  --line: #17592278; 
+  /* --line: #e0e0e0; */
   --soft: #f2f2f2;
   --accent: #0a0a0a;
   --accent-dark: #000000;
@@ -68,8 +69,8 @@ textarea {
 
 .site-header {
   position: sticky;
-  top: 0;
-  z-index: 50;
+  top: 20px;
+  z-index: 1000;
   background: rgba(255, 255, 255, 0.96);
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(16px);
@@ -81,10 +82,9 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 22px;
-  padding: 20px 0;
-  border-bottom: 1px solid var(--line);
-}
+  gap: 18px;
+  padding: 16px 28px;
+} 
 
 .site-title h1 {
   font-family: "Space Grotesk", sans-serif;
@@ -111,15 +111,118 @@ nav {
 }
 
 .nav-links a:hover {
-  color: var(--muted);
+  /* color: var(--muted); */
   text-decoration: underline;
   text-underline-offset: 4px;
+}
+
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(16px);
+
+  background: rgba(255, 255, 255, 0.7); 
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  
+  /* Rounded Corners & Subtle Border */
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 999px; 
+  
+  /* Floating Drop Shadow */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 
+              0 1px 3px rgba(0, 0, 0, 0.02);
+  
+  transition: all 0.3s ease;
+  
 }
 
 .buttons {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+/* Profile Dropdown Container */
+.profile-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Rounded SVG Button */
+.profile-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  transition: background-color 0.2s ease;
+}
+
+.profile-btn:hover {
+  background-color: var(--soft);
+}
+
+/* Floating Dropdown Menu Card */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 12px;
+  background: var(--paper);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  min-width: 200px;
+  padding: 16px;
+  z-index: 1100;
+  text-align: left;
+}
+
+/* Show class toggled by JS */
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-menu .user-name {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  margin-bottom: 4px;
+  font-size: 1rem;
+}
+
+.dropdown-menu .user-email {
+  font-family: "Inter", sans-serif;
+  color: #666;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+}
+
+.dropdown-menu hr {
+  border: 0;
+  border-top: 1px solid var(--soft);
+  margin: 8px 0;
+}
+
+.dropdown-menu .logout-link {
+  display: block;
+  color: var(--danger);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding-top: 4px;
+}
+
+.dropdown-menu .logout-link:hover {
+  text-decoration: underline;
 }
 
 .btn,
@@ -150,7 +253,8 @@ input[type="submit"] {
 button[type="submit"]:hover,
 button:hover,
 input[type="submit"]:hover {
-  opacity: 0.75;
+  opacity: 0.90;
+  transform: scale(1.02);
 }
 
 .content {

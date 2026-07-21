@@ -1,37 +1,60 @@
-<!-- <nav>
-        <div class="site-title">
-            <a href="/"><h1>Blogify</h1></a>
-            <p>A blogs site</p>
+
+<header class="site-header">
+    <nav>
+        <div class="left">
+            <div class="site-title">
+                <a href="/">
+                    <h1>Blogify</h1>
+                </a>
+            </div>
         </div>
-        <ul>
+    
+        <ul class="nav-links">
+             <li><a href="/home">Home</a></li>
             <li><a href="/blogs">Blogs</a></li>
             <li><a href="/about">About</a></li>
-            <li><a href="/blogs/create">New Blog</a></li>
+            <li><a href="/blogs/create" class="write-btn">Write Blog</a></li>
         </ul>
-    </nav> -->
-
-<nav>
-
-    <div class="left">
-
-        <div class="site-title">
-            <a href="/">
-                <h1>Blogify</h1>
-            </a>
+    
+        <div class="buttons">
+            <!-- <a href="#" class="btn">Subscribe</a> -->
+           <div class="buttons">
+                <% if (user) { %>
+                    <!-- Profile Dropdown -->
+                    <div class="profile-dropdown">
+                        <button class="profile-btn" onclick="toggleDropdown(event)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                        </button>
+                        <div id="profileMenu" class="dropdown-menu">
+                            <p class="user-name"><strong><%= user.name %></strong></p>
+                            <p class="user-email"><%= user.email %></p>
+                            <hr />
+                            <a href="/user/logout" class="logout-link">Logout</a>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <a href="/user/login" class="btn">Login</a>
+                    <a href="/user/signup" class="btn">SignUp</a>
+                <% } %>
+            </div>
         </div>
-    </div>
+    
+    </nav>
 
-    <ul class="nav-links">
-         <li><a href="/home">Home</a></li>
-        <li><a href="/blogs">Blogs</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/blogs/create" class="write-btn">Write Blog</a></li>
-    </ul>
-
-    <div class="buttons">
-        <!-- <a href="#" class="btn">Subscribe</a> -->
-        <a href="/user/login" class="btn">Login</a>
-        <a href="/user/signup" class="btn">SignUp</a>
-    </div>
-
-</nav>
+<script>
+  function toggleDropdown(event) {
+      event.stopPropagation();
+      const menu = document.getElementById('profileMenu');
+      menu.classList.toggle('show');
+  }
+  // Close the dropdown if the user clicks anywhere else on the screen
+  window.addEventListener('click', function(event) {
+      const menu = document.getElementById('profileMenu');
+      if (menu && menu.classList.contains('show')) {
+          menu.classList.remove('show');
+      }
+  });
+</script>
+</header>

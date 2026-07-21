@@ -17,7 +17,11 @@ const checkUser = (req, res, next) => {
     const uid = req.cookies.uid;
 
     if (uid) {
-        req.user = auth.getUser(uid);
+        const user = auth.getUser(uid);
+        req.user = user;
+        res.locals.user = user;
+    }else {
+        res.locals.user = null;
     }
 
     next();

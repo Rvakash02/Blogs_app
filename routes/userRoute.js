@@ -14,4 +14,9 @@ router.get('/login', (req, res) => {
 });
 router.post('/login', userController.handleUserLogin);
 
+router.get('/logout', (req, res) => {
+    res.clearCookie('uid');
+     res.redirect('/');
+})
+
 module.exports = router ;
