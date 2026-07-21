@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
+const connectDB = require('./database/db')
 
 
 const app = express();
@@ -11,15 +12,6 @@ const app = express();
 const blogRoute = require('./routes/blogsRoutes');
 const userRoute = require('./routes/userRoute');
 
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => {
-        console.log('DB connected');
-        const PORT = process.env.PORT || 3000;
-        app.listen(PORT, () => {
-            console.log(`Server running on port ${PORT}`);
-        });
-    })
-    .catch(err => console.log(err));
 
 // Middleware
 app.set('views', path.join(__dirname, 'views'));
@@ -49,4 +41,11 @@ app.use('/user', userRoute);
 // 404
 app.use((req, res) => {
     res.status(404).render('404', { title: '404' });
+});
+
+connectDB();
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
